@@ -16,7 +16,7 @@ function calculateAverageMovieRate (arr) {
 function calculateAverageDramaRate (arr) {
     const dramaArray = arr.filter((movie) => {
       return movie.genre.includes("Drama")});
-    if (Number(dramaArray) === 0) {
+    if (dramaArray.length === 0) {
       return 0
     } else {
       return calculateAverageMovieRate(dramaArray);
@@ -25,22 +25,24 @@ function calculateAverageDramaRate (arr) {
 
 calculateAverageDramaRate(MOVIES)
 
-/*
-function calculateAverageDramaRate (arr) {
-    const dramaArray = MOVIES.filter((movie) => {
-      return movie.genre.includes("Drama")});
-    const sumOfRating = arr.reduce((accumulator, value, index, originalArray) => {
-      return accumulator + arr[index].rate;
-    }, 0);
-    return Number((sumOfRating / arr.length).toFixed(2));
-};
-   
-calculateAverageDramaRate(MOVIES)
-*/
-
-
-
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
+
+function orderByYear (arr) {
+    const byYearArray = [ ...arr ];
+    byYearArray.sort((a, b) => {
+        if (a.year > b.year) {
+            return 1;
+        } else if (a.year < b.year) {
+            return -1;
+        } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
+            return 1;
+        } else if (a.title.toLowerCase() < b.title.toLowerCase()) { return -1;}
+    }); return byYearArray;
+}
+
+orderByYear(MOVIES);
+
+
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
